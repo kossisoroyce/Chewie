@@ -51,6 +51,6 @@ Chewie represents a significant step towards **safe, accessible AI for African h
 -   Integrate Retrieval Augmented Generation (RAG) for local guideline lookup.
 
 ## Resources
--   **Model:** `electricsheepafrica/chewie-llama-3b`
--   **Dataset:** `electricsheepafrica/chewie-instruct`
--   **Code:** `github.com/electricsheepafrica/chewie`
+- **Model:** [electricsheepafrica/chewie-llama-3b](https://huggingface.co/electricsheepafrica/chewie-llama-3b)
+- **Dataset:** [electricsheepafrica/chewie-instruct](https://huggingface.co/datasets/electricsheepafrica/chewie-instruct)
+- **Code:** [kossisoroyce/Chewie](https://github.com/kossisoroyce/Chewie)
