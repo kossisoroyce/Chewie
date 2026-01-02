@@ -1,5 +1,7 @@
 # Chewie: African Community Health Worker Assistant 🌍🏥
 
+![Chewie Banner](chewie_banner.png)
+
 **Chewie** is a specialized, open-source Large Language Model (LLM) designed to assist Community Health Workers (CHWs) in sub-Saharan Africa. Fine-tuned on the **Llama 3.2 3B** architecture, it is optimized for:
 
 *   **Clinical Safety:** Strict adherence to triage protocols (Assessment -> Action -> Advice).

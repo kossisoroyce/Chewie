@@ -19,6 +19,8 @@ size_categories:
 
 # Chewie Instruct
 
+![Chewie Banner](chewie_banner.png)
+
 **Chewie Instruct** is a bilingual (English-Swahili) medical instruction dataset designed to train large language models (LLMs) to act as assistants for **Community Health Workers (CHWs)** in Africa.
 
 ## Dataset Summary
