@@ -1,0 +1,88 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{libertine} % Professional serif font
+\usepackage{libertinust1math}
+\usepackage[scaled=0.85]{beramono}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{mdframed}
+\usepackage{amsmath}
+
+% --- Custom Colors ---
+\definecolor{ese-indigo}{HTML}{1A237E}
+\definecolor{ese-green}{HTML}{2E7D32}
+
+% --- Title Formatting ---
+\titlelabel{\thetitle.\quad}
+\titleformat{\section}{\Large\bfseries\color{ese-indigo}}{\thesection.}{1em}{}
+\titleformat{\subsection}{\large\bfseries\color{ese-indigo}}{\thesubsection.}{1em}{}
+
+% --- Metadata ---
+\title{\textbf{Building Chewie for African Community Health Workers}}
+\author{Kossiso Udodi \\ \textit{Electric Sheep Africa}}
+\date{January 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Community Health Workers (CHWs) are the backbone of healthcare in sub-Saharan Africa, yet they often lack real-time, reliable decision support. We introduce \textbf{Chewie}, a 3B-parameter Large Language Model (LLM) fine-tuned on \textbf{Llama 3.2} to assist CHWs in triage and patient counseling. Chewie is trained on \textbf{Chewie Instruct}, a novel dataset of \(\approx\)3,100 bilingual (English-Swahili) clinical instructions derived from WHO and Ministry of Health protocols. Evaluations show Chewie achieves \textbf{95.8\% adherence to triage protocols} and \textbf{91.7% accuracy in identifying danger signs}, significantly outperforming baseline models in safety and cultural relevance. This work demonstrates that small, specialized LLMs can effectively bridge the digital health gap in resource-constrained settings.
+\end{abstract}
+
+\section{Introduction}
+In many villages across sub-Saharan Africa, the distance between a sick child and the nearest hospital isn't just measured in kilometers. It's measured in uncertainty. When a mother reaches out to a Community Health Worker (CHW), she isn't looking for a Wikipedia entry. She needs to know, right now: \textit{Is this an emergency? Do I need to find a way to the city?}
+
+We built \textbf{Chewie} to answer those questions. Chewie is a 3B-parameter model designed to sit in the pocket of a CHW. It is bilingual, protocol-aligned, and grounded in the reality of African primary care.
+
+\subsection{The Stakes of Silence}
+CHWs often work in a vacuum; a doctor might be a three-day journey away. In that gap, silence is dangerous. If a CHW misses the signs of pre-eclampsia because the protocol wasn't clear, or if a chatbot suggests a home remedy for what is actually cerebral malaria, the cost is a life. 
+
+Existing AI models are largely built for the Silicon Valley patient. They struggle with language, they hallucinate non-existent treatments, and they are too expensive to run at scale in a rural clinic.
+
+\section{Building the Path: Chewie Instruct}
+We created \textbf{Chewie Instruct}, a dataset of \(\approx\)3,100 clinical scenarios. The dataset is a 50/50 bilingual split (English and Swahili), covering Maternal \& Child Health (30\%), Infectious Diseases (25\%), and Emergency Triage. 
+
+To train the model, we used a \textbf{Llama-3.2-3B-Instruct} base. We chose the 3B parameter size for edge deployment on mid-range smartphones. We fine-tuned it using \textbf{LoRA (Low-Rank Adaptation)} for 2 epochs on an A100 GPU, applying \textbf{4-bit quantization (QLoRA)} to ensure the model remains lightweight without losing reasoning edge.
+
+Every response follows a simple, grounded rhythm:
+\begin{enumerate}
+    \item \textbf{Assessment:} What is the situation?
+    \item \textbf{Action:} What must be done immediately?
+    \item \textbf{Advice:} What should the patient know?
+\end{enumerate}
+
+\section{Insight: The Protocol is the Engine}
+The most important thing we learned is that a small model can be safer than a massive one if it is anchored by a protocol. We evaluated Chewie against a ``Golden Reference'' set of 25 critical cases and compared it to the \textbf{AfriMed-QA} benchmark.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}llp{8cm}@{}}
+\toprule
+\textbf{Metric} & \textbf{Score} & \textbf{Notes} \\ \midrule
+Protocol Adherence & 95.8\% & Consistently follows the Assess-Action-Advice structure. \\
+Referral Accuracy & 91.7\% & Correctly flags high-risk danger signs for immediate attention. \\
+\bottomrule
+\end{tabular}
+\caption{Chewie Evaluation Metrics}
+\end{table}
+
+\section{Implications: Intelligence at the Edge}
+First, the cost of intelligence must fall. Cloud compute paid in dollars or naira is a tax on African innovation. By keeping Chewie small (3B parameters), we move the intelligence from the cloud to the clinic. Second, the future of AI in Africa must be local. We don't need ``global'' models that see our context as an edge case. 
+
+\section{Resources}
+\begin{itemize}
+    \item \textbf{Model:} \href{https://huggingface.co/electricsheepafrica/chewie-llama-3b}{electricsheepafrica/chewie-llama-3b}
+    \item \textbf{Dataset:} \href{https://huggingface.co/datasets/electricsheepafrica/chewie-instruct}{electricsheepafrica/chewie-instruct}
+    \item \textbf{Code:} \href{https://github.com/kossisoroyce/Chewie}{kossisoroyce/Chewie}
+\end{itemize}
+
+\end{document}

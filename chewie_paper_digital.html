@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chewie: Building for African Community Health Workers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --indigo: #1A237E;
+            --green: #2E7D32;
+            --grey: #F5F7FA;
+            --text: #2D3436;
+            --accent: #0984E3;
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            line-height: 1.8;
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        header {
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 3.5rem;
+            line-height: 1.1;
+            color: var(--indigo);
+            margin-bottom: 20px;
+        }
+
+        .author {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            color: var(--green);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .abstract {
+            background-color: var(--grey);
+            padding: 40px;
+            border-left: 5px solid var(--indigo);
+            margin-bottom: 60px;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            color: var(--indigo);
+            border-bottom: 2px solid var(--grey);
+            padding-bottom: 10px;
+            margin-top: 60px;
+        }
+
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            color: var(--green);
+        }
+
+        p {
+            margin-bottom: 30px;
+        }
+
+        .proverb {
+            font-size: 1.5rem;
+            color: var(--accent);
+            text-align: center;
+            margin: 80px 0;
+            padding: 0 40px;
+            font-style: italic;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 1px solid var(--grey);
+        }
+
+        th {
+            background-color: var(--indigo);
+            color: #fff;
+        }
+
+        .resources {
+            background-color: var(--indigo);
+            color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+        }
+
+        .resources h2 {
+            color: #fff;
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .resources a {
+            color: #74b9ff;
+            text-decoration: none;
+        }
+
+        .banner {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        @media print {
+            .container { padding: 40px; }
+            h1 { font-size: 2.5rem; }
+            .resources { background: none; color: #000; border: 1px solid #ddd; }
+            .resources h2 { color: #000; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="author">Kossiso Udodi | Electric Sheep Africa</div>
+            <h1>Building Chewie for African Community Health Workers</h1>
+            <p>January 2026</p>
+        </header>
+
+        <img src="chewie_banner.png" alt="Chewie Banner" class="banner">
+
+        <div class="abstract">
+            Community Health Workers (CHWs) are the backbone of healthcare in sub-Saharan Africa. 
+            We introduce Chewie, a 3B-parameter model fine-tuned on Llama 3.2 to assist CHWs in triage and patient counseling. 
+            Evaluating on Chewie Instruct, a novel bilingual dataset, Chewie achieves 95.8% adherence to protocols 
+            and 91.7% accuracy in identify danger signs.
+        </div>
+
+        <section>
+            <p>In many villages across sub-Saharan Africa, the distance between a sick child and the nearest hospital isn't just measured in kilometers. It's measured in uncertainty. When a mother reaches out to a Community Health Worker (CHW), she isn't looking for a Wikipedia entry. She needs to know, right now: <em>Is this an emergency? Do I need to find a way to the city?</em></p>
+            
+            <p>We built <strong>Chewie</strong> to answer those questions. Chewie is a 3B-parameter model designed to sit in the pocket of a CHW—bilingual, protocol-aligned, and grounded in the reality of African primary care.</p>
+        </section>
+
+        <div class="proverb">
+            "Among the Igbo, proverbs are the palm oil with which words are eaten." — Chinua Achebe
+        </div>
+
+        <section>
+            <h2>The Stakes of Silence</h2>
+            <p>CHWs operate where doctors are a three-day journey away. In that gap, silence is dangerous. If a CHW misses the signs of pre-eclampsia because the protocol wasn't clear, or if a chatbot suggests a home remedy for what is actually cerebral malaria, the cost is a life.</p>
+            
+            <p>Existing AI models are built for a Silicon Valley context—high-speed connections and pharmacies around every corner. They struggle with language, they hallucinate non-existent treatments, and they are too expensive to run at scale in a rural clinic.</p>
+        </section>
+
+        <section>
+            <h2>Building the Path: Chewie Instruct</h2>
+            <p>We realized that for a model to be useful here, it had to follow a strict path. We created <strong>Chewie Instruct</strong>, a dataset of $\approx$3,100 clinical scenarios. The dataset is a 50/50 bilingual split (English and Swahili), covering Maternal & Child Health (30%), Infectious Diseases (25%), and Emergency Triage.</p>
+
+            <p>To train the model, we used a Llama-3.2-3B-Instruct base. We chose the 3B parameter size for edge deployment on mid-range smartphones. We fine-tuned it using LoRA (Low-Rank Adaptation) for 2 epochs on an A100 GPU, applying 4-bit quantization (QLoRA) to ensure the model remains lightweight.</p>
+
+            <h3>The Triage Rhythm</h3>
+            <ol>
+                <li><strong>Assessment:</strong> What is the situation?</li>
+                <li><strong>Action:</strong> What must be done immediately?</li>
+                <li><strong>Advice:</strong> What should the patient know?</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Insight: The Protocol is the Engine</h2>
+            <p>The results validated our technical choices. A small model can be safer than a massive one if it is anchored by a protocol. We evaluated Chewie against a “Golden Reference” set of 25 critical cases and compared it to the AfriMed-QA benchmark.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Score</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Protocol Adherence</td>
+                        <td>95.8%</td>
+                        <td>Consistently follows the Assess-Action-Advice structure.</td>
+                    </tr>
+                    <tr>
+                        <td>Referral Accuracy</td>
+                        <td>91.7%</td>
+                        <td>Correctly flags high-risk danger signs.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="resources">
+            <h2>Resources</h2>
+            <ul>
+                <li><strong>Model:</strong> <a href="https://huggingface.co/electricsheepafrica/chewie-llama-3b">electricsheepafrica/chewie-llama-3b</a></li>
+                <li><strong>Dataset:</strong> <a href="https://huggingface.co/datasets/electricsheepafrica/chewie-instruct">electricsheepafrica/chewie-instruct</a></li>
+                <li><strong>Code:</strong> <a href="https://github.com/kossisoroyce/Chewie">kossisoroyce/Chewie</a></li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>
