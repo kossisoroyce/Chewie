@@ -40,8 +40,6 @@ The results validated the technical choices:
 
 It isn't a doctor, and it doesn't try to be. It's a guide. Like a neighbor who knows the way to the well, it points the direction to safety.
 
-It isn't a doctor, and it doesn't try to be. It's a guide. Like a neighbor who knows the way to the well, it points the direction to safety.
-
 ## Implications: Intelligence at the Edge
 
 So what follows? 
