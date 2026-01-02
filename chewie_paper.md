@@ -14,7 +14,11 @@ Existing AI models are largely built for the Silicon Valley patient—someone wi
 
 ## Building the Path: Chewie Instruct
 
-We realized that for a model to be useful here, it had to follow a strict path. We created **Chewie Instruct**, a dataset of ~3,100 clinical scenarios. We didn't just want the model to be "smart"; we wanted it to be disciplined.
+We realized that for a model to be useful here, it had to follow a strict path. We created **Chewie Instruct**, a dataset of ~3,100 clinical scenarios. We didn't just want the model to be "smart"; we wanted it to be disciplined. 
+
+The dataset is a 50/50 bilingual split (English and Swahili), covering Maternal & Child Health (30%), Infectious Diseases (25%), and Emergency Triage. We didn't just translate words; we translated protocols. 
+
+To train the model, we used a **Llama-3.2-3B-Instruct** base. We chose the 3B parameter size deliberately—it is the sweet spot for edge deployment on the hardware actually found in African clinics. We fine-tuned it using **LoRA (Low-Rank Adaptation)** for 2 epochs on an A100 GPU, applying **4-bit quantization (QLoRA)** to ensure the resulting model remains lightweight without losing its reasoning edge.
 
 Every response follows a simple, grounded rhythm:
 1. **Assessment:** What is the situation?
@@ -23,13 +27,18 @@ Every response follows a simple, grounded rhythm:
 
 If a pregnant woman has a severe headache and blurred vision, Chewie doesn't hedge. It assesses it as a danger sign, actions an immediate referral, and advises on the gravity of the condition. 
 
-We made it bilingual from the start. "Mama mjamzito anaumwa kichwa sana na anaona giza" (A pregnant woman has a severe headache and sees darkness) triggers the same urgent protocol as the English equivalent. On a continent of 2,000 languages, your health shouldn't depend on your fluency in English.
-
 ## Insight: The Protocol is the Engine
 
-The most important thing we learned is that a 3B-parameter model—small enough to run on a mid-range smartphone—can be safer than a massive model if it is anchored by a protocol. 
+The most important thing we learned is that a small model can be safer than a massive one if it is anchored by a protocol. 
 
-The story is our escort. By grounding the model in specific clinical guidelines (WHO and local Ministry of Health protocols), we turned a general-purpose "toy" into a functional tool. In our tests, Chewie maintained a **95.8% adherence to triage protocols** and a **91.7% accuracy in identifying danger signs**.
+The story is our escort. By grounding the model in specific clinical guidelines (WHO and local Ministry of Health protocols), we turned a general-purpose "toy" into a functional tool. We evaluated Chewie against a "Golden Reference" set of 25 critical cases and compared it to the **AfriMed-QA** benchmark.
+
+The results validated the technical choices:
+- **Protocol Adherence:** 95.8% (Consistently follows the Assess-Action-Advice structure).
+- **Referral Accuracy:** 91.7% (Correctly flags high-risk danger signs for immediate medical attention).
+- **Qualitative Reasoning:** In AfriMed-QA comparisons, Chewie prioritized reasoning through domestic clinical scenarios over simple option selection, behaving more like a practitioner than a test-taker.
+
+It isn't a doctor, and it doesn't try to be. It's a guide. Like a neighbor who knows the way to the well, it points the direction to safety.
 
 It isn't a doctor, and it doesn't try to be. It's a guide. Like a neighbor who knows the way to the well, it points the direction to safety.
 
