@@ -15,6 +15,8 @@
 
 ##  Dataset
 The model was fine-tuned on **Chewie Instruct**, a curated dataset of ~3,000+ medical instructions.
+- **Research Paper (Digital):** [chewie_paper_digital.html](chewie_paper_digital.html)
+- **Research Paper (LaTeX):** [chewie_paper.tex](chewie_paper.tex)
 - **Hugging Face:** [electricsheepafrica/chewie-instruct](https://huggingface.co/datasets/electricsheepafrica/chewie-instruct)
 
 ##  Installation
