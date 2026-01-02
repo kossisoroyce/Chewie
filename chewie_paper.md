@@ -1,56 +1,51 @@
-# Chewie: A Bilingual, Protocol-Aligned Assistant for African Community Health Workers
+# The Story is Our Escort: Building Chewie for African Community Health Workers
 
-**Abstract**
-Community Health Workers (CHWs) are the backbone of healthcare in sub-Saharan Africa, yet they often lack real-time, reliable decision support. We introduce **Chewie**, a 3B-parameter Large Language Model (LLM) fine-tuned on **Llama 3.2** to assist CHWs in triage and patient counseling. Chewie is trained on **Chewie Instruct**, a novel dataset of ~3,000 bilingual (English-Swahili) clinical instructions derived from WHO and Ministry of Health protocols. Evaluations show Chewie achieves **95.8% adherence to triage protocols** and **91.7% accuracy in identifying danger signs**, significantly outperforming baseline models in safety and cultural relevance. This work demonstrates that small, specialized LLMs can effectively bridge the digital health gap in resource-constrained settings.
+*"Among the Igbo, proverbs are the palm oil with which words are eaten."* — Chinua Achebe
 
-## 1. Introduction
-The shortage of trained medical professionals in Africa has shifted the burden of primary care to Community Health Workers. CHWs operate in remote areas, often with limited training and connectivity. Existing AI tools are either too generic, English-centric, or unsafe for clinical use. Small, edge-deployable models offer a solution but lack the domain specificity required for safe healthcare delivery.
+In many villages across sub-Saharan Africa, the distance between a sick child and the nearest hospital isn't just measured in kilometers. It's measured in uncertainty. When a mother reaches out to a Community Health Worker (CHW), she isn't looking for a Wikipedia entry. She needs to know, right now: *Is this an emergency? Do I need to find a way to the city?*
 
-**The Gap:**
-1.  **Language:** Most medical LLMs fail in Swahili, a lingua franca of East Africa.
-2.  **Safety:** General models hallucinate treatments; CHWs need strict adherence to "Referral" protocols.
-3.  **Compute:** Cloud-based models (GPT-4) are inaccessible due to cost and connectivity.
+We built **Chewie** to answer those questions. Chewie is a 3B-parameter model designed to sit in the pocket of a CHW—bilingual, protocol-aligned, and grounded in the reality of African primary care.
 
-## 2. Chewie Instruct Dataset
-We curated **Chewie Instruct**, a high-quality dataset designed to enforce clinical logic.
--   **Size:** ~3,100 examples.
--   **Structure:** Input (Patient Scenario) -> Output (Assessment -> Action -> Advice).
--   **Composition:**
-    -   *Maternal & Child Health (MCH):* 30% (Pre-eclampsia, Nutrition, Vaccination).
-    -   *Infectious Diseases:* 25% (Malaria, TB, HIV).
-    -   *NCDs & Emergency:* 25% (Hypertension, Diabetes, Trauma).
-    -   *General Triage:* 20%.
--   **Language:** 50% English, 50% Swahili (High-quality translation).
+## The Stakes of Silence
 
-## 3. Methodology
--   **Base Model:** Llama-3.2-3B-Instruct (chosen for edge compatibility).
--   **Training:** LoRA (Low-Rank Adaptation) fine-tuning for 2 epochs on an A100 GPU.
--   **Optimization:** 4-bit quantization (QLoRA) to minimize memory footprint while retaining reasoning capabilities.
+Community Health Workers are the backbone of our health systems, yet they often work in a vacuum. A doctor might be a three-day journey away. In that gap, silence is dangerous. If a CHW misses the signs of pre-eclampsia because the protocol wasn't clear, or if a chatbot suggests a home remedy for what is actually cerebral malaria, the cost isn't just a "bad user experience." It's a life.
 
-## 4. Evaluation & Results
+Existing AI models are largely built for the Silicon Valley patient—someone with a high-speed connection and a pharmacy around the corner. They struggle with Swahili, they hallucinate non-existent treatments, and they are too expensive to run at scale in a rural clinic.
 
-### 4.1. Clinical Safety Benchmark
-We tested Chewie on 25 "Golden Reference" cases representing critical scenarios.
+## Building the Path: Chewie Instruct
 
-| Metric | Score | Definition |
-| :--- | :--- | :--- |
-| **Protocol Adherence** | **95.8%** | Follows "Assess -> Action -> Advise" format. |
-| **Referral Accuracy** | **91.7%** | Correctly flags "Danger Signs" (e.g., severe headache in pregnancy). |
+We realized that for a model to be useful here, it had to follow a strict path. We created **Chewie Instruct**, a dataset of ~3,100 clinical scenarios. We didn't just want the model to be "smart"; we wanted it to be disciplined.
 
-### 4.2. Comparative Analysis (AfriMed-QA)
-We benchmarked against **AfriMed-QA**, the gold standard for African medical AI.
--   **Consumer Queries:** Chewie demonstrated **excellent qualitative performance**, correctly identifying medical emergencies in open-ended questions and providing empathetic, structured advice comparable to larger models.
--   **Medical Exams (MCQs):** While not optimized for exam-taking, Chewie correctly reasoned through diagnostic questions (e.g., identifying edematous swelling in Kwashiorkor), favoring detailed explanations over simple multiple-choice selection.
+Every response follows a simple, grounded rhythm:
+1. **Assessment:** What is the situation?
+2. **Action:** What must be done immediately?
+3. **Advice:** What should the patient know?
 
-## 5. Conclusion
-Chewie represents a significant step towards **safe, accessible AI for African healthcare**. By strictly adhering to clinical protocols and supporting Swahili, it empowers CHWs to make better decisions without relying on reliable internet or expensive hardware.
+If a pregnant woman has a severe headache and blurred vision, Chewie doesn't hedge. It assesses it as a danger sign, actions an immediate referral, and advises on the gravity of the condition. 
 
-**Future Work:**
--   Expand language support to Hausa and Yoruba.
--   Deploy quantized GGUF models to Android devices for field pilots.
--   Integrate Retrieval Augmented Generation (RAG) for local guideline lookup.
+We made it bilingual from the start. "Mama mjamzito anaumwa kichwa sana na anaona giza" (A pregnant woman has a severe headache and sees darkness) triggers the same urgent protocol as the English equivalent. On a continent of 2,000 languages, your health shouldn't depend on your fluency in English.
 
-## Resources
+## Insight: The Protocol is the Engine
+
+The most important thing we learned is that a 3B-parameter model—small enough to run on a mid-range smartphone—can be safer than a massive model if it is anchored by a protocol. 
+
+The story is our escort. By grounding the model in specific clinical guidelines (WHO and local Ministry of Health protocols), we turned a general-purpose "toy" into a functional tool. In our tests, Chewie maintained a **95.8% adherence to triage protocols** and a **91.7% accuracy in identifying danger signs**.
+
+It isn't a doctor, and it doesn't try to be. It's a guide. Like a neighbor who knows the way to the well, it points the direction to safety.
+
+## Implications: Intelligence at the Edge
+
+So what follows? 
+
+First, the cost of intelligence must fall. Cloud compute paid in dollars or naira is a tax on African innovation. By keeping Chewie small (3B parameters) and optimizing it for edge devices, we move the intelligence from the cloud to the clinic. 
+
+Second, the future of AI in Africa must be local. We don't need "global" models that see our context as an edge case. We need models where our context is the core.
+
+Chewie is just a beginning. The goal is to ensure that when a CHW reaches for their phone, they find a partner that understands their language, respects their protocol, and shares their burden.
+
+---
+
+### Resources
 - **Model:** [electricsheepafrica/chewie-llama-3b](https://huggingface.co/electricsheepafrica/chewie-llama-3b)
 - **Dataset:** [electricsheepafrica/chewie-instruct](https://huggingface.co/datasets/electricsheepafrica/chewie-instruct)
 - **Code:** [kossisoroyce/Chewie](https://github.com/kossisoroyce/Chewie)
