@@ -1,4 +1,4 @@
-# Chewie: African Community Health Worker Assistant 🌍🏥
+# Chewie: African Community Health Worker Assistant 
 
 ![Chewie Banner](chewie_banner.png)
 
@@ -8,16 +8,16 @@
 *   **Bilingual Support:** Fluent in **English** and **Swahili**.
 *   **Edge Deployment:** Lightweight (3B params) for potential mobile use.
 
-## 🚀 Features
+##  Features
 - **Protocol Adherence:** Trained to follow WHO/MoH clinical guidelines.
 - **Danger Sign Detection:** Prioritizes immediate referrals for critical conditions (e.g., Pre-eclampsia, Sepsis).
 - **Empathy & Education:** Provides culturally aware advice and efficient patient counseling.
 
-## 📥 Dataset
+##  Dataset
 The model was fine-tuned on **Chewie Instruct**, a curated dataset of ~3,000+ medical instructions.
 - **Hugging Face:** [electricsheepafrica/chewie-instruct](https://huggingface.co/datasets/electricsheepafrica/chewie-instruct)
 
-## 🛠️ Installation
+##  Installation
 
 ```bash
 # Clone the repository
@@ -32,7 +32,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## 🧪 Usage
+##  Usage
 
 ### Inference (Python)
 ```python
@@ -51,7 +51,7 @@ outputs = model.generate(**inputs, max_new_tokens=200)
 print(tokenizer.decode(outputs[0]))
 ```
 
-## 📊 Benchmarks
+##  Benchmarks
 The model was evaluated against 25 clinical test cases and the **AfriMed-QA** benchmark.
 
 | Metric | Score | Note |
@@ -60,8 +60,8 @@ The model was evaluated against 25 clinical test cases and the **AfriMed-QA** be
 | **Referral Accuracy** | 91.7% | Correctly identifies emergencies |
 | **Swahili Fluency** | High | No degradation in clinical safety |
 
-## 📜 License
+##  License
 This project is licensed under the **Apache 2.0 License**.
 
-## 🤝 Contributing
+##  Contributing
 Contributions are welcome! Please view the [Issues](https://github.com/kossisoroyce/Chewie/issues) tab.

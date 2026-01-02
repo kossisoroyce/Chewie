@@ -16,7 +16,7 @@ language:
 pipeline_tag: text-generation
 ---
 
-# Chewie-Llama-3.2-3B 🐻⚕️
+# Chewie-Llama-3.2-3B 
 
 ![Chewie Banner](chewie_banner.png)
 
