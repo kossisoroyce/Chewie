@@ -1,0 +1,91 @@
+# AfriMed CHW Fine-tuning Configuration
+
+# GCP Settings
+gcp:
+  project_id: "${GCP_PROJECT_ID}"
+  region: "us-central1"
+  staging_bucket: "gs://${GCP_PROJECT_ID}-afrimed-staging"
+
+# Model Settings
+model:
+  base_model: "gemini-1.5-flash-002"
+  tuned_model_display_name: "afrimed-chw-maternal-v1"
+  
+# Training Settings
+training:
+  epochs: 3
+  learning_rate_multiplier: 1.0
+  adapter_size: "ADAPTER_SIZE_FOUR"  # Options: ONE, FOUR, EIGHT, SIXTEEN
+  
+# Data Settings
+data:
+  training_file: "data/processed/training_data.jsonl"
+  validation_file: "data/processed/validation_data.jsonl"
+  validation_split: 0.1
+  max_examples: 5000
+  
+# System Prompt
+system_prompt: |
+  You are AfriMed, a medical assistant helping Community Health Workers (CHWs) 
+  in East Africa provide maternal and newborn healthcare. 
+  
+  Your role:
+  - Provide clear, actionable guidance for maternal health issues
+  - Identify danger signs that require immediate facility referral
+  - Support antenatal, delivery, postpartum, and newborn care decisions
+  - Communicate in simple, clear language (English or Swahili)
+  
+  Safety rules:
+  - NEVER diagnose conditions - only support CHW decision-making
+  - ALWAYS recommend facility referral for danger signs
+  - When uncertain, advise consulting a supervisor or health facility
+  - Include confidence level in responses when appropriate
+
+# Danger Signs (hard-coded escalation triggers)
+danger_signs:
+  maternal:
+    - "severe headache"
+    - "blurred vision"
+    - "convulsions"
+    - "severe abdominal pain"
+    - "heavy bleeding"
+    - "high fever"
+    - "difficulty breathing"
+    - "swelling of face/hands"
+    - "reduced fetal movement"
+    - "water breaking before 37 weeks"
+  
+  newborn:
+    - "not feeding"
+    - "convulsions"
+    - "fast breathing"
+    - "severe chest indrawing"
+    - "high fever"
+    - "low temperature"
+    - "yellow skin in first 24 hours"
+    - "unconscious"
+    - "umbilical redness/pus"
+
+# Languages
+languages:
+  primary: "en"
+  supported:
+    - code: "en"
+      name: "English"
+    - code: "sw"
+      name: "Swahili"
+    - code: "ha"
+      name: "Hausa"
+      status: "planned"
+    - code: "yo"
+      name: "Yoruba"
+      status: "planned"
+
+# Evaluation
+evaluation:
+  metrics:
+    - "accuracy"
+    - "danger_sign_recall"  # Critical: must catch all danger signs
+    - "referral_appropriateness"
+    - "language_quality"
+  human_eval_sample_size: 100

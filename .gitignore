@@ -1,0 +1,89 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# --- DATA SECTION (STRICT) ---
+# Ignore everything in data by default
+data/*
+
+# Allow the specific folder we want
+!data/training_bundle/
+
+# Ignore everything inside that folder by default
+data/training_bundle/*
+
+# Explicitly allow ONLY the published artifacts
+!data/training_bundle/train.json
+!data/training_bundle/val.json
+!data/training_bundle/README.md
+
+# --- END DATA SECTION ---
+
+# Models
+models/
+*.pt
+*.pth
+*.bin
+*.onnx
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# Secrets
+*.json
+!package.json
+!data/training_bundle/train.json
+!data/training_bundle/val.json
+credentials/
+service-account*.json
